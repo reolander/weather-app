@@ -17,16 +17,19 @@ const search = document.querySelector('form input')
 
 weatherForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  
+
+  messageOne.textContent = "loading...";
+  messageTwo.textContent = '';
+
   const location = search.value
- // fetch('http://localhost:3000/weather?address='+ location)
- fetch('/weather?address='+ location).then((response) => {
+//  fetch('http://localhost:5000/weather?address='+ location)
+ fetch('/weather?address='+ location)
+  .then((response) => {
     response.json()
       .then((data) => {
         if(data.error) {
           messageOne.textContent = data.error
         } else {
-          console.log(data)
           messageOne.textContent = data.location
           messageTwo.textContent = data.forecast
         }
